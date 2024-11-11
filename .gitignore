@@ -1,0 +1,9 @@
+.idea/
+# Mac OS
+.DS_Store
+explore/
+explore_images/
+explore_images_0/
+milvus_demo.db
+explore.ipynb
+.milvus_demo.db.lock

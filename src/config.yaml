@@ -1,0 +1,19 @@
+dataset:
+  path: "/Users/swgj/Documents/Code/datasets/finance_competition"
+  pdf:  "pdf"
+  pdf2txt:  "pdf2txt"
+  db: "博金杯比赛数据.db"
+  question: "question.json"
+
+models:
+  path: "/Users/swgj/Documents/Code/models"
+  ner: "ner"
+  sql: "sql"
+  rag: "rag"
+
+lora:
+  path: "/Users/swgj/Documents/Code/lora"
+  ner: "ner"
+  sql: "sql"
+
+port: 5000
