@@ -1,9 +1,10 @@
 dataset:
-  path: "/Users/swgj/Documents/Code/datasets/finance_competition"
+  path: "/Users/swgj/Documents/Code/python_project/FinanceRAG/data"
   pdf:  "pdf"
   pdf2txt:  "pdf2txt"
   db: "博金杯比赛数据.db"
   question: "question.json"
+  markdown: "markdown"
 
 models:
   path: "/Users/swgj/Documents/Code/models"

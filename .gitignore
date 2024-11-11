@@ -7,3 +7,7 @@ explore_images_0/
 milvus_demo.db
 explore.ipynb
 .milvus_demo.db.lock
+data/
+refer/
+__pycache__/
+*.pyc
