@@ -10,6 +10,11 @@ def parse_pdfs_md(pdf_dir, output_dirs, max_workers=4):
         os.makedirs(output_dirs)
     
     pdf_files = [pdf for pdf in os.listdir(pdf_dir) if (pdf.lower()).endswith(".pdf")]
+
+    # exclude files that have already been processed
+    existing_dirs = os.listdir(output_dirs)
+    md_files = [md+'.PDF' for md in existing_dirs]
+    pdf_files = [pdf for pdf in pdf_files if pdf not in md_files]
     
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = []
