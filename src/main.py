@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.agents.ner_agent import router as ner_router, NERAgent
 from src.agents.sql_agent import router as sql_router, SQLAgent
+from src.agents.rag_agent import router as rag_router, RAGAgent
 from src.config import config
 import uvicorn
 import argparse
@@ -20,6 +21,7 @@ def main():
     # Include the routers
     app.include_router(ner_router)
     app.include_router(sql_router)
+    app.include_router(rag_router)
 
 
     # Initialize the NER Agent
@@ -30,7 +32,7 @@ def main():
     sql_agent = SQLAgent(config.get_path('models','sql'), config.get_path('lora','sql'))
 
     port = args.port
-    uvicorn.run(app, host='0.0.0.0', port=int(port), workers=1)
+    uvicorn.run(app, host="localhost", port=int(port), workers=1)
 
 
 if __name__ == "__main__":

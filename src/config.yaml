@@ -10,6 +10,7 @@ models:
   ner: "ner"
   sql: "sql"
   rag: "rag"
+  embedding: "embedding"
 
 lora:
   path: "/Users/swgj/Documents/Code/lora"
