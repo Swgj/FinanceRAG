@@ -1,5 +1,9 @@
 # FinanceRAG
 
+[toc]
+
+
+
 ## Model Download
 
 Can download from huggingface
@@ -14,7 +18,7 @@ Convert pdf to markdown, which is more easy for chunking and LLM's understanding
 **Script to Run**
 
 ```{shell}
-python script/test_pdf_parser.py
+python script/pdf_parser.py
 ```
 
 **Problem pdf:**
@@ -43,7 +47,13 @@ Find 7 files need to do a slight adjustment, which is caused by additional '\n' 
 
 extracting these 4 pdf use [llamaparse](https://cloud.llamaindex.ai/)
 
+## Data Preprocessing
 
+The biggest problem is that extracted documents **do not have the right recursive structure**, for example:
+
+The **Headr_1: should be a company name** instead of something else, so we'd better to do some preprocessing
+
+<img src="./README.assets/image-20241114001838721.png" alt="image-20241114001838721" style="zoom:50%;" />
 
 ## RAG Demo
 

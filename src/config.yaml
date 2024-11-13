@@ -5,6 +5,7 @@ dataset:
   db: "博金杯比赛数据.db"
   question: "question.json"
   markdown: "markdown"
+  preprocessed_md: "preprocessed_md"
 
 models:
   path: "/Users/swgj/Documents/Code/models"
@@ -17,5 +18,10 @@ lora:
   path: "/Users/swgj/Documents/Code/lora"
   ner: "ner"
   sql: "sql"
+
+milvus:
+  host: "localhost"
+  port: 19530
+  collection_name: "financeMD"
 
 port: 5000
