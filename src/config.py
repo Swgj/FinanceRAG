@@ -28,7 +28,7 @@ class Config:
 # 使用 argparse 解析命令行参数
 parser = argparse.ArgumentParser(description='Configuration file parser')
 parser.add_argument('--config', type=str, default=os.path.join(os.path.dirname(__file__), 'config.yaml'), help='Path to the configuration file')
-args = parser.parse_args()
+args, unknown = parser.parse_known_args() # use the unkonwn parameter to avoid error when running in Jupyter notebook
 
 # 创建全局配置实例
 config = Config(args.config)

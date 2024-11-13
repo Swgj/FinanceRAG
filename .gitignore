@@ -9,6 +9,10 @@ explore.ipynb
 .milvus_demo.db.lock
 data/pdf/
 data/markdown/*/*.png
+data/*.pdf
+data/*.txt
+*.ipynb
+*.pkl
 *.db
 refer/
 __pycache__/

@@ -4,7 +4,8 @@
 
 Can download from huggingface
 
-1. embedding:BAAI/bge-large-zh-v1.5
+1. embedding: BAAI/bge-large-zh-v1.5
+2. reranker: BAAI/bge-reranker-large
 
 ## PDF Extracting
 
@@ -44,6 +45,59 @@ extracting these 4 pdf use [llamaparse](https://cloud.llamaindex.ai/)
 
 
 
+## RAG Demo
+
+use llama3.2 3B as base model:
+
+### without RAG:
+
+```markdown
+>>> 介绍一下武汉力源信息技术股份有限公司
+**关于武汉力源信息技术股份有限公司**
+
+武汉力源信息技术股份有限公司是一家中国 headquartered 的信息技术公司，主要从
+事软件开发、销售和服务。公司成立于1999年，总部位于中国湖北省武汉市。
+
+**业务范围**
+
+力源信息技术股份有限公司的业务范围广泛，包括：
+
+* **软件开发和研究**:  Force Source 主要提供各类软件产品，例如办公管理系统、
+人工智能等。
+* **销售和服务**:  Force Source 在全国范围内提供软件销售和支持服务。
+* **外部服务**:  Force Source 也为其他公司提供技术咨询和应用service。
+
+**主要产品**
+
+Force Source 的主要产品包括：
+
+* **ForceOS**：是一种办公管理系统，用于提高企业的 productivity 和效率。
+* **Fusion**：是一种人工智能解决方案，用于帮助企业做出数据驱动决策。
+* **Mosaic**：是一种智能硬件平台，用于为 IoT 设备提供智能服务。
+
+**合作伙伴**
+
+Force Source 以其强大的技术能力和广泛的合作伙伴网络而著名。公司已经与许多国
+内外知名企业合作，包括中国百联、中国电信、中国 Telecom等。
+
+**发展目标**
+
+Force Source 的长期发展目标是成为全球领先的信息技术服务提供商，通过创新和高
+效的运营，为客户提供高质量的软件产品和服务
+```
+
+
+
+### With RAG
+
+```markdown
+>>> 介绍一下武汉力源信息技术股份有限公司
+
+武汉力源信息技术股份有限公司是一家专注于半导体集成电路和电子元器件的公司，注册资本为人民币5,000 万元。公司由赵马克担任法定代表人，主要运营范围包括电子产品、电子元器件、信息技术及相关成套产品方案的开发、研制、生产、销售及技术服务。公司的主营业务是推广、销售和应用服务于半导体集成电路等电子元器件。
+```
+
+
+
 ## Some Interesting Problems Met in Data Preprocessing
 
 - This kind of PDF shadow-style format can cause errors when extracting text
@@ -56,20 +110,19 @@ extracting these 4 pdf use [llamaparse](https://cloud.llamaindex.ai/)
     <img src="./README.assets/image-20241111233949605.png" alt="image-20241111233949605" style="zoom:25%;" />
     <img src="./README.assets/image-20241111234118592.png" alt="image-20241111234118592" style="zoom:25%;" />
   </figure>
-
   
-
+  
 - Head title missing because title contained in Image
 
   <figure class="half">
     <img src="./README.assets/image-20241111233256138.png" alt="image-20241111233256138" style="zoom:25%;" />
     <img src="./README.assets/image-20241111233215573.png" alt="image-20241111233215573" style="zoom:25%;" />
   </figure>
-
   
-
   
-
+  
+  
+  
   
 
 
