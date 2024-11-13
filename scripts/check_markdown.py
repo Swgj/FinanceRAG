@@ -27,7 +27,7 @@ def check_md_files(directory):
                 print(f"{md_file} does not contain '# xx有限公司'")
                 bad_md.append(md_file)
             else:
-                print(f"{md_file} contains {search}")
+                print(f"{md_file} contains {search.group(0)}")
     return bad_md
 
 
