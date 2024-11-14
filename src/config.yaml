@@ -8,11 +8,12 @@ dataset:
   preprocessed_md: "preprocessed_md"
 
 models:
-  path: "/Users/swgj/Documents/Code/models"
+  path: "/Users/swgj/Documents/Code/python_project/FinanceRAG/models"
   ner: "ner"
   sql: "sql"
-  rag: "rag"
-  embedding: "embedding"
+  rag: "qwen2.5"
+  embedding: "bge-large-zh-v1.5"
+  reranker: "bge-reranker-large"
 
 lora:
   path: "/Users/swgj/Documents/Code/lora"
@@ -23,5 +24,7 @@ milvus:
   host: "localhost"
   port: 19530
   collection_name: "financeMD"
+  uri: "/Users/swgj/Documents/Code/python_project/FinanceRAG/data/milvus_md.db"
+  index_storage: "/Users/swgj/Documents/Code/python_project/FinanceRAG/data/milvus_md_index"
 
 port: 5000

@@ -1,6 +1,10 @@
 from sentence_transformers import SentenceTransformer
 from src.config import config
 from bs4 import BeautifulSoup
+from llama_index.readers.file import FlatReader
+from llama_index.core.node_parser import SimpleFileNodeParser
+from pathlib import Path
+from typing import List
 import os
 import markdown
 
@@ -36,3 +40,14 @@ def load_texts(md_dir):
                 doc_ids.append(file_name)
     
     return texts, doc_ids
+
+def docs_parse(doc_dir: List[str]):
+    docs = []
+    for doc_path in doc_dir:
+        doc = FlatReader().load_data(Path(doc_path))
+        docs.extend(doc)
+
+    parser = SimpleFileNodeParser()
+    # parse the documents to nodes
+    nodes = parser.get_nodes_from_documents(docs)
+    return nodes

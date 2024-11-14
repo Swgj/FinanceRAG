@@ -7,11 +7,16 @@ explore_images_0/
 milvus_demo.db
 explore.ipynb
 .milvus_demo.db.lock
+
 data/pdf/
 data/markdown/*/*.png
 data/*.pdf
 data/*.txt
 data/preprocessed_md/
+data/milvus/
+data/milvus_deep/
+data/*.lock
+
 *.ipynb
 *.pkl
 *.db
