@@ -55,6 +55,21 @@ The **Headr_1: should be a company name** instead of something else, so we'd bet
 
 <img src="./README.assets/image-20241114001838721.png" alt="image-20241114001838721" style="zoom:50%;" />
 
+```shell
+python scripts/pdf_preprocessing.py
+```
+
+
+
+Here we did 2 thins:
+
+	1. Added company_name as header1 for those absent
+	1. Removed header1 that not company_name
+
+After preprocessing, we now make sure company_name is the **only header1**
+
+<img src="./README.assets/image-20241114130231977.png" alt="image-20241114130231977" style="zoom:50%;" />
+
 ## RAG Demo
 
 use llama3.2 3B as base model:
