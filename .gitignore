@@ -17,7 +17,7 @@ data/milvus/
 data/milvus_deep/
 data/*.lock
 
-*.ipynb
+
 *.pkl
 *.db
 refer/
