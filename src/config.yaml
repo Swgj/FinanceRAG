@@ -9,8 +9,8 @@ dataset:
 
 models:
   path: "/Users/swgj/Documents/Code/python_project/FinanceRAG/models"
-  ner: "ner"
-  sql: "sql"
+  ner: "qwen2.5"
+  sql: "qwen2.5"
   rag: "qwen2.5"
   embedding: "bge-large-zh-v1.5"
   reranker: "bge-reranker-large"
