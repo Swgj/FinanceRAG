@@ -24,7 +24,7 @@ metadata.reflect(engine)
 def get_query_engine():
     Settings.llm = Ollama(model=config.get('models')['sql'])
     Settings.embed_model = HuggingFaceEmbedding(
-        model_name=config.get('models')['embedding'],
+        model_name=config.get_path('models', 'embedding'),
         device= get_device()
     )
     global engine, metadata
