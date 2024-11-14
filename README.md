@@ -10,6 +10,7 @@ Can download from huggingface
 
 1. embedding: BAAI/bge-large-zh-v1.5
 2. reranker: BAAI/bge-reranker-large
+3. Lora base model: Qwen/Qwen2.5-7B-Instruct
 
 ## PDF Extracting
 
