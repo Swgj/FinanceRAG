@@ -1,5 +1,5 @@
 from src.rag.data_to_milvus import load_nodes_to_milvus
-from rag.document_parse import docs_parse
+from src.rag.document_parse import docs_parse
 from llama_index.llms.ollama import Ollama
 from llama_index.core import Settings
 from src.config import config

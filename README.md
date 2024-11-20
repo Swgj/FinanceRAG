@@ -2,7 +2,15 @@
 
 [toc]
 
+## Quick Start
 
+First you need to prepare all the environment, models, dataset are ready
+
+then you just need to run:
+
+```shell
+uvicorn src.app:app --reload --host localhost --port 8888  
+```
 
 ## Environment Setup
 
