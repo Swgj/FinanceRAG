@@ -162,10 +162,42 @@ Force Source 的长期发展目标是成为全球领先的信息技术服务提�
   </figure>
   
   
-  
-  
-  
-  
+
+## SQL
+
+As the column name contains special symbol like "(" ")", which lead to a **SQL Parsing Error**, it is necessary to add **double quotes** to avoid.
+
+For example：
+
+we need to change
+
+```sqlite
+SELECT 股票代码, MAX(最高价(元)) AS 最高价 FROM `港股票日行情表` GROUP BY 股票代码 ORDER BY 最高价 DESC LIMIT 1;
+```
+
+To 
+
+```sqlite
+SELECT "股票代码", MAX("最高价(元)") AS 最高价 FROM `港股票日行情表` GROUP BY "股票代码" ORDER BY 最高价 DESC LIMIT 1;
+```
+
+As "最高价(元)" will be parse as a function "最高价()" instead of a column name
+
+
+
+Use a prompt engineering to solve this problem:
+Before prompt:
+<img src="./README.assets/image-20241120204046770.png" alt="image-20241120204046770" style="zoom:50%;" />
+
+After Prompt:
+
+<img src="./README.assets/image-20241120205351758.png" alt="image-20241120205351758" style="zoom:50%;" />
+
+## Fine-tuning
+
+For Efficient Fine-tuning, we use the [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory) project as solution
+
+### Preparation
 
 
 

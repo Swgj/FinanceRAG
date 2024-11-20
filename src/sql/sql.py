@@ -9,6 +9,7 @@ from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from src.config import config
 from src.utils.torch_utils import get_device
+from src.prompt.text_to_sql_template import get_prompt
 
 
 # create engine
@@ -34,6 +35,9 @@ def get_query_engine():
     query_engine = NLSQLTableQueryEngine(
         sql_database=sql_db,
         tables=list(metadata.tables.keys()),
-        llm=Settings.llm
+        llm=Settings.llm,
+        # sql_only=True,
+        # synthesize_response=False,
+        text_to_sql_prompt=get_prompt(),
     )
     return query_engine
