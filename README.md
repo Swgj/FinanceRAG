@@ -140,6 +140,36 @@ Force Source 的长期发展目标是成为全球领先的信息技术服务提�
 
 
 
+### Result of Different Chunking Strategys
+
+Example:
+
+```
+Question: 湖南长远锂科股份有限公司变更设立时作为发起人的法人有哪些？
+```
+
+Ground Truth:
+
+<img src="./README.assets/image-20241121152328866.png" alt="image-20241121152328866" style="zoom:33%;" />
+
+1. Simple chunking
+
+   ```json
+   "answer": "湖南长远锂科股份有限公司变更设立时作为发起人的法人包括余春明、余超彪等78名自然人。"
+   ```
+
+   
+
+2. Semantic chunking
+
+   ```json
+   "answer": "湖南长远锂科股份有限公司变更设立时，作为发起人的法人包括五矿股份、长沙矿冶院、宁波创元、深圳安晏、尚颀颀旻、安鹏智慧、国调基金、建信投资、信石信远、华能融科、中信投资、三峡金石、伊敦基金和中启洞鉴这14家法人。"
+   ```
+
+   
+
+   
+
 ## Some Interesting Problems Met in Data Preprocessing
 
 - This kind of PDF shadow-style format can cause errors when extracting text
