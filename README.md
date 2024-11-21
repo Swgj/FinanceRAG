@@ -107,6 +107,14 @@ After preprocessing, we now make sure company_name is the **only header1**
 
 <img src="./README.assets/image-20241114130231977.png" alt="image-20241114130231977" style="zoom:50%;" />
 
+If you want to access the first time use RAG module, vectorlize the documents by running
+
+```shell
+python scripts/vectorlize_markdown.py
+```
+
+
+
 ## RAG Demo
 
 use llama3.2 3B as base model:
