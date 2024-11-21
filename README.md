@@ -28,6 +28,26 @@ Can download from huggingface
 2. reranker: BAAI/bge-reranker-large
 3. Lora base model: Qwen/Qwen2.5-7B-Instruct
 
+```shell
+# Qwen/Qwen2.5-3B-Instruct
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/Qwen/Qwen2.5-3B-Instruct
+# BAAI/bge-large-zh-v1.5
+GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/BAAI/bge-large-zh-v1.5
+
+```
+
+
+
+## Dataset Download
+
+Preprocessed PDF files (md format) has downloaded from Github repository, so just keep it
+
+we need to download the SQLite Database:
+
+Here I uploaded dataset to this [google drive](https://drive.google.com/file/d/1j2Xdgy9HnkYLUaLmxV9XkQxrfu1h9_4B/view?usp=share_link)
+
+
+
 ## PDF Extracting
 
 Convert pdf to markdown, which is more easy for chunking and LLM's understanding
