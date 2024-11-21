@@ -1,6 +1,7 @@
 from src.rag.data_to_milvus import load_nodes_to_milvus
 from src.rag.document_parse import docs_parse
 from llama_index.llms.ollama import Ollama
+from llama_index.llms.huggingface import HuggingFaceLLM
 from llama_index.core import Settings
 from src.config import config
 import os
@@ -21,7 +22,16 @@ def get_query_engine():
     index = load_nodes_to_milvus(nodes)
 
     # Query engine
-    Settings.llm = Ollama(model=config.get('models')['rag'])
+    if config.get("llm") == "huggingface":
+        Settings.llm = HuggingFaceLLM(
+            model_name=config.get_path('models', 'rag'),
+            tokenizer_name=config.get_path('models', 'rag'),
+            )
+    elif config.get("llm") == "ollama":
+        Settings.llm = Ollama(model=config.get('models')['rag']) # do not change get to get_path, here's getting name
+    else:
+        raise Exception("Invalid LLM")
+    
     query_engine = index.as_chat_engine()
 
     return query_engine

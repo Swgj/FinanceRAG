@@ -7,11 +7,15 @@ dataset:
   markdown: "markdown"
   preprocessed_md: "preprocessed_md"
 
+# how to use llm, ollama or huggingface or api
+# llm: "ollama"
+llm: "huggingface"
+
 models:
   path: "/Users/swgj/Documents/Code/python_project/FinanceRAG/models"
-  ner: "qwen2.5"
-  sql: "qwen2.5"
-  rag: "qwen2.5"
+  ner: "Qwen2.5-3B"
+  sql: "Qwen2.5-3B"
+  rag: "Qwen2.5-3B"
   embedding: "bge-large-zh-v1.5"
   reranker: "bge-reranker-large"
 
@@ -26,5 +30,10 @@ milvus:
   collection_name: "financeMD"
   uri: "/Users/swgj/Documents/Code/python_project/FinanceRAG/data/milvus_md.db"
   index_storage: "/Users/swgj/Documents/Code/python_project/FinanceRAG/data/milvus_md_index"
+
+output:
+  path: "/Users/swgj/Documents/Code/python_project/FinanceRAG/output"
+  log: "log"
+  result: "answer.jsonl"
 
 port: 5000
