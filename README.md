@@ -9,8 +9,16 @@ First you need to prepare all the environment, models, dataset are ready
 then you just need to run:
 
 ```shell
-uvicorn src.app:app --reload --host localhost --port 8888  
+python -m uvicorn src.app:app --reload --host localhost --port 8888  
 ```
+
+generate answers
+
+```shell
+python scripts/run.py
+```
+
+
 
 ## Environment Setup
 
@@ -256,6 +264,24 @@ After Prompt:
 For Efficient Fine-tuning, we use the [Llama-Factory](https://github.com/hiyouga/LLaMA-Factory) project as solution
 
 ### Preparation
+
+without fine-tuning
+
+```markdown
+query: 请帮我计算，在20210105，中信行业分类划分的一级行业为综合金融行业中，涨跌幅最大股票的股票代码是？涨跌幅是多少？百分数保留两位小数。股票涨跌幅定义为：（收盘价 - 前一日收盘价 / 前一日收盘价）* 100%
+
+response:  SQL查询
+Company: NULL
+Keywords: 20210105 一级行业为综合金融 中信行业分类 涨跌幅最大 股票代码 涨跌幅
+TextQueryForSQL: SELECT T1.股票代码, ((T1.收盘价 - T2.昨收盘(元)) / T2.昨收盘(元)) * 100 AS 涨跌幅 FROM A股公司行业划分表 AS T1 JOIN A股票日行情表 AS T2 ON T1.股票代码 = T2.股票代码 WHERE T1.交易日期 = '20210105' AND T1.一级行业名称 = '综合金融' ORDER BY 涨跌幅 DESC LIMIT 1 解析步骤如下：
+
+1. **确定查询目标**：
+   - 需要找出20210105日期时，中信行业分类的一级行业为综合金融中的涨跌幅最大股票的股票代码及涨跌幅。
+
+2. **数据来源**：
+   - 使用`A股公司行业划分表`获取股票代码、交易日期、行业划分标准、一级行业名称等信息。
+   - 使用`A股票日行情表`
+```
 
 
 
