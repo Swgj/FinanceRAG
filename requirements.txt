@@ -13,3 +13,9 @@ torch==2.2.2
 tqdm==4.66.6
 transformers==4.44.2
 uvicorn==0.32.0
+
+llama-index-llms-ollama
+llama-index-postprocessor-flag-embedding-reranker
+llama-index-readers-file
+llama-index-readers-llama-parse
+llama-index-vector-stores-milvus
