@@ -198,6 +198,14 @@ Keywords: “你提取的关键词和任务描述”
 
 Query: {query_str}
 QuestionType: \
-
 """
+
+
+prompt_template = PromptTemplate(
+    classify_task_template_fewshot_cn,
+    prompt_type=PromptType.QUESTION_ANSWER
+    )
+
+def get_prompt():
+    return prompt_template
 

@@ -7,8 +7,8 @@ from llama_index.core.query_engine import CustomQueryEngine
 from typing import Union
 from src.config import config
 from src.utils.torch_utils import get_device
-from src.prompt.classify_task_template_fewshot import get_prompt
-
+# from src.prompt.classify_task_template_fewshot import get_prompt
+from src.prompt.classify_task_template_fewshot_cn import get_prompt
 
 class NERQueryEngine(CustomQueryEngine):
 
