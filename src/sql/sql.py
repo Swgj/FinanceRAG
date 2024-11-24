@@ -46,8 +46,8 @@ def get_query_engine():
         sql_database=sql_db,
         tables=list(metadata.tables.keys()),
         llm=Settings.llm,
-        # sql_only=True,
-        # synthesize_response=False,
+        sql_only=True,
+        synthesize_response=False,
         text_to_sql_prompt=get_prompt(),
     )
     return query_engine

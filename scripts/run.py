@@ -22,12 +22,21 @@ def main():
         lines = list(reader)
         print(len(lines))
     
-    # get first 5 questions
-    questions = lines[:5]
+    count = 0
+    # continue from the last question
+    if os.path.exists(output_path):
+        with jsonlines.open(output_path) as reader:
+            answered = list(reader)
+            count = len(answered)
+            print(f"already get {count} answers")
+            lines = lines[len(answered):]
+            print(f"continue from the {count+1}th question")
 
-    for i, item in tqdm(enumerate(questions)):
+    questions = lines
+
+    for item in tqdm(questions):
         query = item.get("question")
-        print(f"The {i+1}th question is: ")
+        print(f"The {count+1}th question is: ")
         print(query)
         answer = pipeline(query)
         print("The answer is: ")
@@ -38,6 +47,8 @@ def main():
         # save the answers
         with jsonlines.open(output_path, "a") as writer:
             writer.write(item)
+        
+        count += 1
 
 
 

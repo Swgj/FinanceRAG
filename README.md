@@ -78,7 +78,7 @@ python script/pdf_parser.py
 Check whether each markdown is well-formatted (the title contains company name or not)
 
 ```{shell}
-python script/check_mardown.py
+python scripts/check_markdown.py
 ```
 
 Find 7 files need to do a slight adjustment, which is caused by additional '\n' at the title

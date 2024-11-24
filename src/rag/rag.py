@@ -9,16 +9,18 @@ import os
 query_engine = None
 
 def get_query_engine():
-    # Get knowledge base files
-    md_files = []
-    md_files_dir = config.get_path('dataset', 'preprocessed_md')
-    for root, dirs, files in os.walk(md_files_dir):
-        for file in files:
-            if file.endswith('.md'):
-                md_files.append(os.path.join(root, file))
-    
-    # Load nodes to Milvus
-    nodes = docs_parse(md_files)
+    nodes = None
+    if not os.path.exists(config.get('milvus')['uri']):
+        # Get knowledge base files
+        md_files = []
+        md_files_dir = config.get_path('dataset', 'preprocessed_md')
+        for root, dirs, files in os.walk(md_files_dir):
+            for file in files:
+                if file.endswith('.md'):
+                    md_files.append(os.path.join(root, file))
+        
+        # Load nodes to Milvus
+        nodes = docs_parse(md_files)
     index = load_nodes_to_milvus(nodes)
 
     # Query engine
