@@ -38,7 +38,10 @@ def main():
         query = item.get("question")
         print(f"The {count+1}th question is: ")
         print(query)
-        answer = pipeline(query)
+        try:
+            answer = pipeline(query)
+        except Exception as e:
+            answer = str(e)
         print("The answer is: ")
         print(answer)
         item["answer"] = answer

@@ -26,6 +26,7 @@ Answer: Final answer here
 Only use tables listed below.
 {schema}
 
+注意：上述表字段都是中文，所以注意你的查询语句的语言是否正确
 
 Question: {query_str}
 SQLQuery: \
