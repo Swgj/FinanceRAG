@@ -4,12 +4,54 @@ we need to make sure the company name is the only head one in the markdown file.
 """
 
 import os
-# import markdown
 import re
-# from bs4 import BeautifulSoup
 from tqdm import tqdm
-# from markdownify import markdownify as md
 
+def clean_markdown(file_path, output_path):
+    # delete heaf and foot lines
+
+    with open(file_path, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    
+    cleaned_lines = []
+
+    for i, line in enumerate(lines):
+        # remove page split line
+        if re.match(r'^-+$', line.strip()):
+            continue
+        # remove tail, single number line before split line
+        if i < len(lines) - 3 and re.match(r'^(\d+(-\d+)*|\d+( \d+)+)$', line.strip()) and re.match(r'^-+$', lines[i+3].strip()):
+            continue
+        # remove head, contains '公司' or '招股意向书' afrer split line
+        if i > 2 and re.match(r'^-+$', lines[i-2].strip()) and re.search(r'(公司|招股意向书)', line):
+            continue
+
+        cleaned_lines.append(line)
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.writelines(cleaned_lines)
+
+def remove_catalogue(file_path, output_path):
+    """
+    从 Markdown 文件中删除目录内容。
+
+    Args:
+        file_path (str): 输入 Markdown 文件路径。
+        output_path (str): 输出清理后的 Markdown 文件路径。
+    """
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+
+    # 正则表达式匹配目录区域
+    # 目录以 `# 目 录` 开始，以下一个标题（如 `# 第一章` 或 `# 释 义`）结束
+    pattern = r"(#{1,6}\s*目\s*录[\s\S]*?)(?=#{1,6}\s+\S)"
+    
+    # 使用正则替换删除匹配的目录区域
+    cleaned_content = re.sub(pattern, "", content, flags=re.MULTILINE)
+
+    # 将清理后的内容写入输出文件
+    with open(output_path, 'w', encoding='utf-8') as output_file:
+        output_file.write(cleaned_content)
 
 def preprocess_markdown(md_dir, output_dir):
     # 使用正则表达式将公司名称提取出来，并添加到第一行 作为h1
@@ -57,79 +99,15 @@ def preprocess_markdown(md_dir, output_dir):
         output_file_path = os.path.join(output_dir, file_path.split('/')[-1])
         with open(output_file_path, 'w', encoding='utf-8') as f:
             f.write(cleaned_md_content)
-            # f.write(modified_content)
+        
+        # remove head and foot lines
+        clean_markdown(output_file_path, output_file_path)
+        
+        # remove catalogue
+        remove_catalogue(output_file_path, output_file_path)
+
         print(f"Processed and saved {output_file_path}")
 
-    
 
-# def bad_preprocess_markdown(md_dir, output_dir):
-#     if not os.path.exists(output_dir):
-#         os.makedirs(output_dir)
 
-#     bad_md = [] # store the bad markdown files
-#     check_md = []
-
-#     for root, _, files in os.walk(md_dir):
-#         files = [f for f in files if f.endswith('.md')]
-
-#     for id, file in tqdm(enumerate(files),total=len(files), desc="Preprocessing markdown files"):
-#         file_path = os.path.join(root, file)
-
-#         with open(file_path, 'r', encoding='utf-8') as f:
-#             md_content = f.read()
-        
-#         # parse markdown
-#         html_content = markdown.markdown(md_content, extensions=['tables'])
-#         soup = BeautifulSoup(html_content, 'html.parser')
-        
-#         # find all headers
-#         headers = soup.find_all(re.compile(r'h\d'))
-#         # make sure the company name is the only header one
-#         company_name_header = None
-#         for header in headers:
-#             if header.name == 'h1':
-#                 if header.text.endswith('有限公司'):
-#                     company_name_header = header
-#                 else:
-#                     header.name = 'h2'
-        
-#         if company_name_header is None:
-#             print(f"Warning: {file} does not contain the company name in h1")
-
-#             # try to find company name in other headers
-#             for header in headers:
-#                 if header.text.endswith('有限公司'):
-#                     company_name_header = header
-#                     break
-            
-#             try:
-#                 # add the company name to the first line
-#                 company_name = company_name_header.text
-#                 company_name_header.extract()
-#                 new_header = soup.new_tag('h1')
-#                 new_header.string = company_name
-#                 soup.insert(0, new_header) 
-#                 check_md.append(file)
-#             except:
-#                 print(f"Error: {file} does not contain the company name in any headers")
-#                 bad_md.append(file)
-#                 continue
-            
-#         # turn the soup back to markdown
-#         cleaned_md_content = md(soup.prettify())
-        
-#         # save the cleaned markdown
-#         output_file_path = os.path.join(output_dir, file)
-#         # output_file_path = os.path.join(output_dir, file.replace('.md', '.html'))
-#         with open(output_file_path, 'w', encoding='utf-8') as f:
-#             f.write(cleaned_md_content)
-                    
-#         # print(f"Processed and saved {output_file_path}")
-
-#     print(f"Found {len(bad_md)} bad markdown files")
-#     for bad in bad_md:
-#         print(bad)
-#     print(f"please check {len(check_md)} markdown files")
-#     for check in check_md:
-#         print(check)
 

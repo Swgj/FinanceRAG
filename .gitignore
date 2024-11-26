@@ -17,6 +17,8 @@ data/milvus/
 data/milvus_deep/
 data/*.lock
 
+postprocess.ipynb
+answer_submit_qwen.jsonl
 
 *.pkl
 *.db
