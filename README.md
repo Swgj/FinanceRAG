@@ -4,7 +4,9 @@
 
 ## Quick Start
 
-First you need to prepare all the environment, models, dataset are ready
+First you need to prepare all the [environment](#environment setup), [models](#model download), [dataset](#dataset download) are ready,
+
+After that, [preprocess the data](#data preprocessing)
 
 then you just need to run:
 
